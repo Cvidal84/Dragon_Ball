@@ -1,19 +1,26 @@
-fetch("https://dragonball-api.com/api/characters?limit=100")
-  .then(res => res.json())
-  .then(data => {
-    const personajes = data.items;
+Promise.all([
+  fetch("https://dragonball-api.com/api/characters?limit=100").then(res => res.json()),
+  fetch("https://dragonball-api.com/api/transformations").then(res => res.json())
+])
+  .then(([charData, transData]) => {
+    const personajes = Array.isArray(charData.items) ? charData.items : charData;
+    const transformaciones = Array.isArray(transData.items) ? transData.items : transData;
 
     const main = document.createElement("main");
     document.body.appendChild(main);
 
+    // SECCIÓN DE PERSONAJES
+    const contenedorPersonajes = document.createElement("section");
+    main.appendChild(contenedorPersonajes);
+
     for (const personaje of personajes) {
       const div = document.createElement("div");
-
+      div.classList.add("card");
       div.innerHTML = `
-        <h2>${personaje.name}</h2>
-        <img src="${personaje.image}" alt="${personaje.name}" />
-        <p>${personaje.race}</p>
-        <p>${personaje.gender}</p>
+        <h3>${personaje.name}</h3>
+        <img src="${personaje.image}" alt="${personaje.name}" style="width:100%; border-radius: 8px; margin-bottom: 10px;" />
+        <p><strong>Raza:</strong> ${personaje.race}</p>
+        <p><strong>Género:</strong> ${personaje.gender}</p>
         <button class="btn-descripcion">Ver descripción</button>
         <p class="descripcion" style="display:none;">${personaje.description}</p>
       `;
@@ -27,12 +34,27 @@ fetch("https://dragonball-api.com/api/characters?limit=100")
         botonDescripcion.textContent = visible ? "Ver descripción" : "Ocultar descripción";
       });
 
-      // Aquí podrías añadir lógica para el botón de transformaciones si quieres
+      contenedorPersonajes.appendChild(div);
+    }
 
-      main.appendChild(div);
+    // SECCIÓN DE TRANSFORMACIONES
+    const contenedorTransformaciones = document.createElement("section");
+    main.appendChild(contenedorTransformaciones);
+
+    for (const trans of transformaciones) {
+      const div = document.createElement("div");
+      div.classList.add("card");
+      div.innerHTML = `
+        <h3>${trans.name}</h3>
+        <img src="${trans.image}" alt="${trans.name}" style="width:100%; border-radius: 8px; margin-bottom: 10px;" />
+        <p><strong>Personaje:</strong> ${trans.character || "Desconocido"}</p>
+        <p><strong>Ki:</strong> ${trans.ki || "N/A"}</p>
+      `;
+
+      contenedorTransformaciones.appendChild(div);
     }
   })
   .catch(error => {
     console.error("Error:", error);
-    document.body.innerHTML = `<h2>No se pueden mostrar los datos ahora. Inténtalo más tarde.</h2>`;
+    document.body.innerHTML = `<h2>Error al cargar datos. Inténtalo más tarde.</h2>`;
   });
