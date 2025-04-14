@@ -18,7 +18,7 @@ Promise.all([
       div.classList.add("card");
       div.innerHTML = `
         <h3>${personaje.name}</h3>
-        <img src="${personaje.image}" alt="${personaje.name}" style="width:100%; border-radius: 8px; margin-bottom: 10px;" />
+        <img src="${personaje.image}" alt="${personaje.name}"/>
         <p><strong>Raza:</strong> ${personaje.race}</p>
         <p><strong>Género:</strong> ${personaje.gender}</p>
         <button class="btn-descripcion">Ver descripción</button>
@@ -46,8 +46,7 @@ Promise.all([
       div.classList.add("card");
       div.innerHTML = `
         <h3>${trans.name}</h3>
-        <img src="${trans.image}" alt="${trans.name}" style="width:100%; border-radius: 8px; margin-bottom: 10px;" />
-        <p><strong>Personaje:</strong> ${trans.character || "Desconocido"}</p>
+        <img src="${trans.image}" alt="${trans.name}"/>
         <p><strong>Ki:</strong> ${trans.ki || "N/A"}</p>
       `;
 
