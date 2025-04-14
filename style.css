@@ -28,7 +28,29 @@ header > h1{
    -webkit-background-clip: text;
    background-clip: text;
    -webkit-text-fill-color: transparent;
+}
+#buscador{
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  width: auto;
 
+}
+#btnBuscar{
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  width: auto;
+  background-color: black;
+  color: white;
+}
+#btnReset{
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  width: auto;
+  background-color: black;
+  color: white;
 }
 section {
     width: 100%;
