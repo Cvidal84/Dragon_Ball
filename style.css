@@ -1,4 +1,7 @@
 
+body {
+  background-color: orange;
+}
 main {
     margin: 0;
     padding: 0;
@@ -6,9 +9,26 @@ main {
     width: 100%;
 }
 header{
-  font-size: 6rem;
+  margin: 0;
+  padding: 0;
   background-color: orange;
   text-align: center;
+}
+header > h1{
+  font-size: 20rem;
+  font-size: 20rem;
+  font-weight: 1000;
+   /* Imagen de fondo */
+   background-image: url('https://media.vandal.net/ivandal/12/63/1200x630/1/1-2020/20201171740517_1.jpg');
+   background-size: cover;
+   background-position: center;
+ 
+   /* Clip de imagen dentro del texto */
+   color: transparent;
+   -webkit-background-clip: text;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+
 }
 section {
     width: 100%;
@@ -20,6 +40,7 @@ section {
 }
 .card {
     width: 250px;
+    height: 600px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -70,4 +91,19 @@ section {
   
   button.btn-descripcion:hover {
     background-color: #e07a00;
+  }
+  @media (max-width: 950px) {
+    header >h1 {
+      font-size: 12rem;
+    }
+  }
+  @media (max-width: 750px) {
+    header >h1 {
+      font-size: 10rem;
+    }
+  }
+  @media (max-width: 450px) {
+    header >h1 {
+      font-size: 4rem;
+    }
   }
